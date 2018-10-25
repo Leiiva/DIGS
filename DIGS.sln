@@ -5,16 +5,32 @@ VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIGS", "DIGS\DIGS.csproj", "{5E381513-4539-4D43-84C3-F0E0068D3BFF}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JEOMaze", "..\..\..\Desktop\Progra\JEOMaze\JEOMaze\JEOMaze.vbproj", "{52AB8DDF-B049-4A08-8934-08D87039E0D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Debug|x86.Build.0 = Debug|Any CPU
 		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E381513-4539-4D43-84C3-F0E0068D3BFF}.Release|x86.Build.0 = Release|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Debug|x86.Build.0 = Debug|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Release|x86.ActiveCfg = Release|Any CPU
+		{52AB8DDF-B049-4A08-8934-08D87039E0D2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

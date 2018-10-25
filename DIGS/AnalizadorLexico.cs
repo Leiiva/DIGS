@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DIGS.Token;
+using static DIGS.Tokens;
 using static DIGS.Error;
 
 namespace DIGS
@@ -24,7 +24,7 @@ namespace DIGS
             return k;
         }
 
-        public List<Token> salida;
+        public List<Tokens> salida;
         public List<Error> salida2;
         private int estado;
         private string auxLex;
@@ -36,7 +36,7 @@ namespace DIGS
         public void addToken(Tipo tipo, int fila)
         {
 
-            salida.Add(new Token(tipo, auxLex, fila, columna));
+            salida.Add(new Tokens(tipo, auxLex, fila, columna));
 
         }
 
@@ -47,10 +47,10 @@ namespace DIGS
             estado = 0;
         }
 
-        public List<Token> analizar(string entrada, int Fila)
+        public List<Tokens> analizar(string entrada, int Fila)
         {
             entrada = entrada + "#";
-            salida = new List<Token>();
+            salida = new List<Tokens>();
             estado = 0;
             columna = 0;
             auxLex = "";
