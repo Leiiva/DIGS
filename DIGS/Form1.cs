@@ -346,8 +346,10 @@ namespace DIGS
                 {
 
                 // Agregar Variables
-                int a, b;
-                    if ((lTokens[i].getTipo() == Tokens.Tipo.VARIABLE))
+                int a, b,c,d = 0;
+                int bv = 0;
+
+                if ((lTokens[i].getTipo() == Tokens.Tipo.VARIABLE))
                     {
                         auxcount = i;
                         while ((lTokens[auxcount].getTipo() != Tokens.Tipo.PUNTO_Y_COMA))
@@ -360,7 +362,7 @@ namespace DIGS
                             auxcount = auxcount + 1;
                         }
                     }
-                    int valor;
+                    int valor = 0;
                     // Agregar Valor a las Variables
                     if ((lTokens[i].getTipo() == Tokens.Tipo.IDENTIFICADOR))
                     {
@@ -394,12 +396,15 @@ namespace DIGS
                                                 
                                             }
                                         }
-                                        else if ((lTokens(i + 5).getTipo == Tipo.IDENTIFICADOR))
+                                        else if ((lTokens[i + 5].getTipo() == Tipo.IDENTIFICADOR))
                                         {
                                             for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                             {
                                                 if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
-                                                    lVariable(v).setValor(operar(Val(lTokens(i + 3).getTexto), lTokens(i + 4), Val(buscarvariable(lTokens(i + 5)))).ToString);
+                                            {
+                                                lVariable[v].setValor(operar(Int32.Parse(lTokens[i + 3].getTexto()), lTokens[i + 4], buscarvariable(lTokens[i+5])));
+                                            }
+                                                    //lVariable[v].setValor(operar((Int32.Parse(lTokens[i + 3].getTexto()), lTokens(i + 4), buscarvariable(lTokens(i + 5)).ToString());
                                             }
                                         }
                                     }
@@ -776,11 +781,9 @@ namespace DIGS
                             }
                         }
                     }
-
-                    int a;
-                    int b;
-                    // Verificar Rango_Casillas
-                    if ((lTokens(i).getTipo == Tokens.Tipo.RANGO_CASILLA))
+                int vv = 0 ;
+                // Verificar Rango_Casillas
+                if ((lTokens(i).getTipo == Tokens.Tipo.RANGO_CASILLA))
                     {
                         if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
                         {
@@ -795,7 +798,7 @@ namespace DIGS
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(lTokens(i + 6).getTexto); c <= Val(lTokens(i + 9).getTexto); c += pasito)
+                                        for (int c = Val(lTokens(i + 6).getTexto); c <= lTokens(i + 9).getTexto(); c += pasito)
                                             lObstaculos.Add(new Obstaculos(Val(lTokens(i + 4).getTexto), c, 1));
                                     }
                                     else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
@@ -861,17 +864,25 @@ namespace DIGS
                                     }
                                     else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
                                     {
-                                        if ((Val(lTokens(i + 6).getTexto) < Val(buscarvariable(lTokens(i + 9)))))
+                                        if (Int32.Parse(lTokens[i + 6].getTexto()) < buscarvariable(lTokens[i + 9]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
+
+                                    for (int v = 0; v <= lVariable.Count - 1; v += 1)
+                                    {
+
+                                        if (lVariable[v].getNombre().Equals(lTokens[i + 9].getTexto()))
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 9).getTexto)))
-                                                b = Val(lVariable(v).getValor);
+                                            Int32.TryParse(lVariable[v].getValor(), out vv);
                                         }
-                                        for (int c = Val(lTokens(i + 6).getTexto); c <= b; c += pasito)
-                                            lObstaculos.Add(new Obstaculos(Val(lTokens(i + 4).getTexto), c, 1));
+                                    }
+
+                                    for (Int32.TryParse(lTokens[i + 6].getTexto(), out c); c <= vv; c += pasito)
+                                    {
+                                        lObstaculos.Add(new Obstaculos(Int32.Parse(lTokens[i + 4].getTexto()), c, 1));
+                                    }
+                                    
                                     }
                                 }
                             }
