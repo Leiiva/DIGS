@@ -26,6 +26,12 @@ namespace DIGS
             this.Tamaño = tamañaso;
         }
 
+        public Tokens(Tipo tipo, string auxLex, int fila, int columna)
+        {
+            this.fila = fila;
+            this.columna = columna;
+        }
+
         public Color getColor() =>
             this.colorcito;
 
@@ -227,7 +233,11 @@ namespace DIGS
             UBICACION_PERSONAJE,
             UBICACION_TESORO,
             ULTIMO,
-            VARIABLE
+            VARIABLE,
+            ARITEMETICOSUMA,
+            ARITMETICORESTA,
+            ARITMETICOMULTIPLICACION,
+            ARITMETICODIVISION
         }
     }
 }

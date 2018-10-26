@@ -24,26 +24,26 @@ namespace DIGS
 {
     public partial class Form1 : Form
     {
-        private Archivo archivo = new Archivo();
-        private AnalizadorLexico analizador = new AnalizadorLexico();
-        private Sintactico sint = new Sintactico();
-        private List<Tokens> lTokens;
-        private List<ErrorSintactico> lerrores = new List<ErrorSintactico>();
-        private List<int> rango = new List<int>();
-        private List<Variables> lVariable = new List<Variables>();
-        public List<Coordenada> lCoordenadas = new List<Coordenada>();
-        public List<Obstaculos> lObstaculos = new List<Obstaculos>();
-        private int puntero;
-        private int puntero2;
-        private int auxcount;
-        private string nombrevariable;
-        private int valorvariable;
-        private bool suma = false;
-        private bool resta = false;
-        private bool multiplicacion = false;
-        private bool division = false;
-        private int total = 0;
-        private IContainer components;
+        Archivo archivo = new Archivo();
+        AnalizadorLexico analizador = new AnalizadorLexico();
+        Sintactico sint = new Sintactico();
+        List<Tokens> lTokens;
+        List<ErrorSintactico> lerrores = new List<ErrorSintactico>();
+        List<int> rango = new List<int>();
+        List<Variables> lVariable = new List<Variables>();
+        List<Coordenada> lCoordenadas = new List<Coordenada>();
+        List<Obstaculos> lObstaculos = new List<Obstaculos>();
+        int puntero;
+        int puntero2;
+        int auxcount;
+        string nombrevariable;
+        int valorvariable;
+        bool suma = false;
+        bool resta = false;
+        bool multiplicacion = false;
+        bool division = false;
+        int total = 0;
+        IContainer components;
         public Form1()
         {
             InitializeComponent();
@@ -173,9 +173,9 @@ namespace DIGS
 
         private void analizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.Entrada.Text == "")
+            if (this.rtbT.Text == "")
             {
-                Interaction.MsgBox("El campo esta vacio", MsgBoxStyle.ApplicationModal, null);
+                new MessageBox = MsgBox("El campo esta vacio", Style.GetRoundedRectangle, null);
             }
             else
             {
