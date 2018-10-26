@@ -402,44 +402,50 @@ namespace DIGS
                                             {
                                                 if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
                                             {
-                                                lVariable[v].setValor(operar(Int32.Parse(lTokens[i + 3].getTexto()), lTokens[i + 4], buscarvariable(lTokens[i+5])));
+                                                Int32.TryParse(lTokens[i + 3].getTexto(), out a);
+                                                lVariable[v].setValor(operar(a, lTokens[i + 4], buscarvariable(lTokens[i+5])));
                                             }
-                                                    //lVariable[v].setValor(operar((Int32.Parse(lTokens[i + 3].getTexto()), lTokens(i + 4), buscarvariable(lTokens(i + 5)).ToString());
+                                                    
                                             }
                                         }
                                     }
                                 }
-                                else if ((lTokens(i + 3).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                else if (lTokens[i + 3].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                 {
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.PUNTO_Y_COMA))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.PUNTO_Y_COMA)
                                     {
                                         for (int w = 0; w <= lVariable.Count - 1; w += 1)
                                         {
-                                            if ((lVariable(w).getNombre.Equals(lTokens(i + 3).getTexto)))
-                                                valor = Val(lVariable(w).getValor);
+                                            if (lVariable[w].getNombre().Equals(lTokens[i + 3].getTexto()))
+                                                valor = Val(lVariable[w].getValor());
                                         }
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i).getTexto.ToString)))
-                                                lVariable(v).setValor(valor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i].getTexto.ToString()))
+                                                lVariable[v].setValor[valor];
                                         }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.MAS | lTokens(i + 4).getTipo == Tokens.Tipo.MENOS | lTokens(i + 4).getTipo == Tokens.Tipo.POR | lTokens(i + 4).getTipo == Tokens.Tipo.DIVIDIR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.MAS | lTokens[i + 4].getTipo() == Tokens.Tipo.MENOS | lTokens[i + 4].getTipo() == Tokens.Tipo.POR | lTokens[i + 4].getTipo() == Tokens.Tipo.DIVIDIR)
                                     {
-                                        if ((lTokens(i + 5).getTipo == Tipo.NUMERO_ENTERO))
+                                        if (lTokens[i + 5].getTipo() == Tipo.NUMERO_ENTERO)
                                         {
                                             for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                             {
-                                                if ((lVariable(v).getNombre.Equals(lTokens(i).getTexto.ToString)))
-                                                    lVariable(v).setValor(operar(Val(buscarvariable(lTokens(i + 3))), lTokens(i + 4), Val(lTokens(i + 5).getTexto)).ToString);
+                                                if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
+                                                {
+                                                    lVariable[v].setValor(operar(buscarvariable(lTokens[i + 3]), lTokens[i + 4], lTokens[i + 5].getTexto().ToString());
+                                                }
                                             }
                                         }
-                                        else if ((lTokens(i + 5).getTipo == Tipo.IDENTIFICADOR))
+                                        else if (lTokens[i + 5].getTipo() == Tipo.IDENTIFICADOR)
                                         {
                                             for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                             {
-                                                if ((lVariable(v).getNombre.Equals(lTokens(i).getTexto.ToString)))
-                                                    lVariable(v).setValor(operar(Val(buscarvariable(lTokens(i + 3))), lTokens(i + 4), Val(buscarvariable(lTokens(i + 5)))).ToString);
+                                                if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
+                                                {
+                                                    Int32.TryParse(lTokens[i + 3].getTexto(), out a);
+                                                    lVariable[v].setValor(operar(a, lTokens[i + 4], buscarvariable(lTokens[i+5])));
+                                                }
                                             }
                                         }
                                     }
