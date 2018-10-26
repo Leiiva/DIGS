@@ -300,6 +300,44 @@ namespace DIGS
 
         }
 
+        int operar(int val1, Tokens l, int val2)
+        {
+            int resultado = 0;
+            if ((l.getTipo() == Tipo.MAS))
+            {
+                resultado = val1 + val2;
+                return resultado;
+            }
+            else if ((l.getTipo() == Tipo.MENOS))
+            {
+                resultado = val1 - val2;
+                return resultado;
+            }
+            else if ((l.getTipo() == Tipo.POR))
+            {
+                resultado = val1 * val2;
+                return resultado;
+            }
+            else if (l.getTipo() == Tipo.DIVIDIR && val2 != 0)
+            {
+                resultado = val1 / val2;
+                return resultado;
+            }
+            else
+                return 0;
+        }
+
+        int buscarvariable(Tokens t)
+        {
+            int var = 0;
+            for (int i = 0; i <= lVariable.Count - 1; i += 1)
+            {
+                if ((lVariable[i].getNombre().Equals(t.getTexto())))
+                    Int32.TryParse(lVariable[i].getValor(), out var);
+            }
+            return var;
+        }
+
         private void crearJuegoToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 lVariable.Clear();
@@ -307,7 +345,8 @@ namespace DIGS
                 for (int i = 0; i <= lTokens.Count - 1; i += 1)
                 {
 
-                    // Agregar Variables
+                // Agregar Variables
+                int a, b;
                     if ((lTokens[i].getTipo() == Tokens.Tipo.VARIABLE))
                     {
                         auxcount = i;
@@ -339,21 +378,27 @@ namespace DIGS
                                                 lVariable[v].setValor(lTokens[i + 3].getTexto().ToString());
                                         }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.MAS | lTokens(i + 4).getTipo == Tokens.Tipo.MENOS | lTokens(i + 4).getTipo == Tokens.Tipo.POR | lTokens(i + 4).getTipo == Tokens.Tipo.DIVIDIR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.MAS | lTokens[i + 4].getTipo() == Tokens.Tipo.MENOS | lTokens[i + 4].getTipo() == Tokens.Tipo.POR | lTokens[i + 4].getTipo() == Tokens.Tipo.DIVIDIR)
                                     {
-                                        if ((lTokens(i + 5).getTipo == Tipo.NUMERO_ENTERO))
+                                        if ((lTokens[i + 5].getTipo() == Tipo.NUMERO_ENTERO))
                                         {
                                             for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                             {
-                                                if ((lVariable(v).getNombre.Equals(lTokens(i).getTexto.ToString)))
-                                                    lVariable(v).setValor(operar(Val(lTokens(i + 3).getTexto), lTokens(i + 4), Val(lTokens(i + 5).getTexto)).ToString);
+                                                if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
+                                                {
+                                                
+                                                Int32.TryParse(lTokens[i + 3].getTexto(), out a);
+                                                Int32.TryParse(lTokens[i + 5].getTexto(), out b);
+                                                lVariable[v].setValor(operar(a, lTokens[i + 4], b).ToString());
+                                                }
+                                                
                                             }
                                         }
                                         else if ((lTokens(i + 5).getTipo == Tipo.IDENTIFICADOR))
                                         {
                                             for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                             {
-                                                if ((lVariable(v).getNombre.Equals(lTokens(i).getTexto.ToString)))
+                                                if (lVariable[v].getNombre().Equals(lTokens[i].getTexto().ToString()))
                                                     lVariable(v).setValor(operar(Val(lTokens(i + 3).getTexto), lTokens(i + 4), Val(buscarvariable(lTokens(i + 5)))).ToString);
                                             }
                                         }
@@ -837,9 +882,14 @@ namespace DIGS
                 Module1.lObstaculos = this.lObstaculos;
                 Module1.lCoordenadas = this.lCoordenadas;
                 Form2.Show();
-            }
+        }
 
-        
+        void imprimirvariables(List<Variables> l)
+        {
+            foreach (Variables t in l)
+                Console.WriteLine(t.getNombre().ToString() + "->" + t.getValor().ToString());
+        }
+
 
         Style BlueStyle = new TextStyle(Brushes.Blue, null, System.Drawing.FontStyle.Italic);
         Style RedStyle = new TextStyle(System.Drawing.Brushes.Red, null, System.Drawing.FontStyle.Regular);
@@ -893,5 +943,12 @@ namespace DIGS
             range.SetStyle(OrangeStyle, Aritmetica.ToString(), RegexOptions.IgnoreCase);
 
         }
+
+        List<Coordenada> ObtenerLista()
+        {
+            return lCoordenadas;
+        }
+
+
     }
 }
