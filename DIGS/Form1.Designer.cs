@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rtbT = new FastColoredTextBoxNS.FastColoredTextBox();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.tsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,19 +41,9 @@
             this.manualTecnicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rtbT = new System.Windows.Forms.RichTextBox();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rtbT
-            // 
-            this.rtbT.AutoScrollMinSize = new System.Drawing.Size(25, 15);
-            this.rtbT.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.rtbT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbT.Location = new System.Drawing.Point(0, 24);
-            this.rtbT.Name = "rtbT";
-            this.rtbT.Size = new System.Drawing.Size(607, 413);
-            this.rtbT.TabIndex = 0;
-            this.rtbT.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.rtbT_TextChanged);
             // 
             // msMain
             // 
@@ -155,7 +144,7 @@
             // 
             this.manualTecnicoToolStripMenuItem.Image = global::DIGS.Properties.Resources.font;
             this.manualTecnicoToolStripMenuItem.Name = "manualTecnicoToolStripMenuItem";
-            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualTecnicoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.manualTecnicoToolStripMenuItem.Text = "Manual Tecnico";
             this.manualTecnicoToolStripMenuItem.Click += new System.EventHandler(this.manualTecnicoToolStripMenuItem_Click);
             // 
@@ -163,7 +152,7 @@
             // 
             this.manualDeUsuarioToolStripMenuItem.Image = global::DIGS.Properties.Resources.font;
             this.manualDeUsuarioToolStripMenuItem.Name = "manualDeUsuarioToolStripMenuItem";
-            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.manualDeUsuarioToolStripMenuItem.Text = "Manual de Usuario";
             this.manualDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.manualDeUsuarioToolStripMenuItem_Click);
             // 
@@ -171,9 +160,18 @@
             // 
             this.acercaDeToolStripMenuItem.Image = global::DIGS.Properties.Resources.help;
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
+            // 
+            // rtbT
+            // 
+            this.rtbT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbT.Location = new System.Drawing.Point(0, 24);
+            this.rtbT.Name = "rtbT";
+            this.rtbT.Size = new System.Drawing.Size(607, 413);
+            this.rtbT.TabIndex = 3;
+            this.rtbT.Text = "";
             // 
             // Form1
             // 
@@ -193,8 +191,6 @@
         }
 
         #endregion
-
-        private FastColoredTextBoxNS.FastColoredTextBox rtbT;
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem tsMenu;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
@@ -208,6 +204,7 @@
         private System.Windows.Forms.ToolStripMenuItem manualTecnicoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualDeUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox rtbT;
     }
 }
 

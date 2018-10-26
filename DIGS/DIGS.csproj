@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalizadorLexico.cs" />
+    <Compile Include="Analizador.cs" />
     <Compile Include="Archivo.cs" />
     <Compile Include="Coordenada.cs" />
     <Compile Include="Error.cs" />

@@ -41,8 +41,8 @@ namespace DIGS
         public int getFila() =>
             this.fila;
 
-        public string getTamaño() =>
-            Convert.ToString(this.Tamaño);
+        public int getTamaño() =>
+            this.Tamaño;
 
         public string getTexto() =>
             this.Texto;
