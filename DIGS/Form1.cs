@@ -42,7 +42,7 @@ namespace DIGS
         bool multiplicacion = false;
         bool division = false;
         int total = 0;
-        IContainer components;
+        //IContainer components;
         public Form1()
         {
             InitializeComponent();
@@ -173,7 +173,7 @@ namespace DIGS
         {
             puntero = 0;
             puntero2 = 0;
-            foreach(Tokens t in li)
+            foreach (Tokens t in li)
             {
                 puntero2 = t.getTamaño();
                 rtbT.SelectionStart = puntero;
@@ -206,12 +206,12 @@ namespace DIGS
                 int conteyo = 0;
                 string tablaerrores = "";
                 System.Windows.Forms.MessageBox.Show("Listado de Tokens en HTML Creado exitosamente");
-                
+
                 for (int i = 0; i <= lTokens.Count - 1; i += 1)
                 {
                     tab = tab + "<Tr><Td>" + i + 1 + "<Td>" + lTokens[i].getTexto() + "<Td>" + lTokens[i].getTipoString() + "<Td>" + lTokens[i].getFila().ToString() + "<Td>" + lTokens[i].getColumna().ToString() + "" + Environment.NewLine;
                 }
-                  
+
                 File.Delete(archivoHTML);
                 escritor = File.AppendText(archivoHTML);
                 escritor.WriteLine("<html>");
@@ -248,7 +248,7 @@ namespace DIGS
                 {
                     tablaerrores = tablaerrores + "<Tr><Td>" + "------" + "<Td>" + "------" + "<Td>" + "------" + "<Td>" + "------" + "<Td>" + "------" + "" + Environment.NewLine;
                 }
-                   
+
                 else
                 {
                     System.Windows.Forms.MessageBox.Show("El codigo ingresado contiene errores");
@@ -620,7 +620,7 @@ namespace DIGS
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
                                             if (lVariable[v].getNombre().Equals(lTokens[i + 9].getTexto()))
-                                              Int32.TryParse(lVariable[v].getValor(), out y);
+                                                Int32.TryParse(lVariable[v].getValor(), out y);
                                         }
                                         Int32.TryParse(lTokens[i + 4].getTexto(), out a);
                                         Int32.TryParse(lTokens[i + 7].getTexto(), out b);
@@ -629,61 +629,82 @@ namespace DIGS
                                         else
                                             pasito = -1;
                                         for (int cx = a; cx <= b; cx += pasito)
-                                            lCoordenadas.Add(new Coordenada(x, y));
+                                            lCoordenadas.Add(new Coordenada(cx, y));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 7).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 7].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((Val(lTokens(i + 4).getTexto) < Val(lTokens(i + 7).getTexto)))
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 7].getTexto(), out b);
+                                        if (a < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(lTokens(i + 4).getTexto); c <= Val(lTokens(i + 7).getTexto); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(c, Val(lTokens(i + 9).getTexto)));
+                                        for (int cx = a; cx <= b; cx += pasito)
+                                        {
+                                            Int32.TryParse(lTokens[i + 9].getTexto(), out y);
+                                            lCoordenadas.Add(new Coordenada(cx, y));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 9).getTipo == Tokens.Tipo.VARIABLE))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 9].getTipo() == Tokens.Tipo.VARIABLE)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 6))) < Val(buscarvariable(lTokens(i + 9)))))
+                                        if (buscarvariable(lTokens[i + 6]) < buscarvariable(lTokens[i + 9]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(buscarvariable(lTokens(i + 6))); c <= Val(buscarvariable(lTokens(i + 9))); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(Val(lTokens(i + 4).getTexto), c));
+                                        for (int cy = buscarvariable(lTokens[i + 6]); cy <= buscarvariable(lTokens[i + 9]); cy += pasito)
+                                        {
+                                            Int32.TryParse(lTokens[i + 4].getTexto(), out x);
+                                            lCoordenadas.Add(new Coordenada(x, cy));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 9].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 6))) < Val(lTokens(i + 9).getTexto)))
+                                        Int32.TryParse(lTokens[i + 6].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 9].getTexto(), out b);
+
+                                        if (buscarvariable(lTokens[i + 6]) < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(buscarvariable(lTokens(i + 6))); c <= Val(lTokens(i + 9).getTexto); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(Val(lTokens(i + 4).getTexto), c));
+                                        for (int cy = a; cy <= b; cy += pasito)
+                                        {
+                                            Int32.TryParse(lTokens[i + 4].getTexto(), out x);
+                                            lCoordenadas.Add(new Coordenada(x, cy));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 7).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 7].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
-                                        if ((Val(lTokens(i + 4).getTexto) < Val(buscarvariable(lTokens(i + 7)))))
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 7].getTexto(), out b);
+                                        if (a < buscarvariable(lTokens[i + 7]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(lTokens(i + 4).getTexto); c <= Val(buscarvariable(lTokens(i + 7))); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(c, Val(buscarvariable(lTokens(i + 9)))));
+                                        for (int cx = a; cx <= buscarvariable(lTokens[i + 7]); cx += pasito)
+                                        {
+                                            Int32.TryParse(lTokens[i + 9].getTexto(), out y);
+                                            lCoordenadas.Add(new Coordenada(cx, y));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 7).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 7].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 4))) < Val(buscarvariable(lTokens(i + 7)))))
+                                        if (buscarvariable(lTokens[i + 4]) < buscarvariable(lTokens[i + 7]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(buscarvariable(lTokens(i + 4))); c <= Val(buscarvariable(lTokens(i + 7))); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(c, Val(buscarvariable(lTokens(i + 9)))));
+                                        for (int cx = buscarvariable(lTokens[i + 4]); cx <= buscarvariable(lTokens[i + 7]); cx += pasito)
+                                        {
+                                            lCoordenadas.Add(new Coordenada(cx, buscarvariable(lTokens[i + 9])));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 6))) < Val(buscarvariable(lTokens(i + 9)))))
+                                        if (buscarvariable(lTokens[i + 6]) < buscarvariable(lTokens[i + 9]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(buscarvariable(lTokens(i + 6))); c <= Val(buscarvariable(lTokens(i + 9))); c += pasito)
-                                            lCoordenadas.Add(new Coordenada(Val(buscarvariable(lTokens(i + 4))), c));
+                                        for (int cy = buscarvariable(lTokens[i + 6]); cy <= buscarvariable(lTokens[i + 9]); cy += pasito)
+                                            lCoordenadas.Add(new Coordenada(buscarvariable(lTokens[i + 4]), cy));
                                     }
                                 }
                             }
@@ -691,26 +712,26 @@ namespace DIGS
                     }
 
                     // Verificar Ubicación Personaje
-                    if ((lTokens(i).getTipo == Tokens.Tipo.UBICACION_PERSONAJE))
+                    if (lTokens[i].getTipo() == Tokens.Tipo.UBICACION_PERSONAJE)
                     {
-                        if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
+                        if (lTokens[i + 1].getTipo() == Tokens.Tipo.CORCHETE_CERRADO)
                         {
-                            if ((lTokens(i + 2).getTipo == Tokens.Tipo.DOS_PUNTOS))
+                            if (lTokens[i + 2].getTipo() == Tokens.Tipo.DOS_PUNTOS)
                             {
-                                if ((lTokens(i + 3).getTipo == Tokens.Tipo.PARENTESIS_ABIERTO))
+                                if (lTokens[i + 3].getTipo() == Tokens.Tipo.PARENTESIS_ABIERTO)
                                 {
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((lTokens(i + 5).getTipo == Tokens.Tipo.COMA))
+                                        if (lTokens[i + 5].getTipo() == Tokens.Tipo.COMA)
                                         {
-                                            if ((lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                            if (lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                             {
-                                                if ((lTokens(i + 7).getTipo == Tokens.Tipo.PARENTESIS_CERRADO))
+                                                if (lTokens[i + 7].getTipo() == Tokens.Tipo.PARENTESIS_CERRADO)
                                                 {
-                                                    if ((lTokens(i + 8).getTipo == Tokens.Tipo.PUNTO_Y_COMA))
+                                                    if (lTokens[i + 8].getTipo() == Tokens.Tipo.PUNTO_Y_COMA)
                                                     {
-                                                        Module1.x0personaje = Val(lTokens(i + 4).getTexto);
-                                                        Module1.y0personaje = Val(lTokens(i + 6).getTexto);
+                                                        Int32.TryParse(lTokens[i + 4].getTexto(), out Module1.x0personaje);
+                                                        Int32.TryParse(lTokens[i + 6].getTexto(), out Module1.y0personaje);
                                                     }
                                                 }
                                             }
@@ -721,27 +742,27 @@ namespace DIGS
                         }
                     }
                     // Verificar Ubicación Tesoro
-                    if ((lTokens(i).getTipo == Tokens.Tipo.UBICACION_TESORO))
+                    if (lTokens[i].getTipo() == Tokens.Tipo.UBICACION_TESORO)
                     {
-                        if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
+                        if (lTokens[i + 1].getTipo() == Tokens.Tipo.CORCHETE_CERRADO)
                         {
-                            if ((lTokens(i + 2).getTipo == Tokens.Tipo.DOS_PUNTOS))
+                            if (lTokens[i + 2].getTipo() == Tokens.Tipo.DOS_PUNTOS)
                             {
-                                if ((lTokens(i + 3).getTipo == Tokens.Tipo.PARENTESIS_ABIERTO))
+                                if (lTokens[i + 3].getTipo() == Tokens.Tipo.PARENTESIS_ABIERTO)
                                 {
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((lTokens(i + 5).getTipo == Tokens.Tipo.COMA))
+                                        if (lTokens[i + 5].getTipo() == Tokens.Tipo.COMA)
                                         {
-                                            if ((lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                            if (lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                             {
-                                                if ((lTokens(i + 7).getTipo == Tokens.Tipo.PARENTESIS_CERRADO))
+                                                if (lTokens[i + 7].getTipo() == Tokens.Tipo.PARENTESIS_CERRADO)
                                                 {
-                                                    if ((lTokens(i + 8).getTipo == Tokens.Tipo.PUNTO_Y_COMA))
+                                                    if (lTokens[i + 8].getTipo() == Tokens.Tipo.PUNTO_Y_COMA)
                                                     {
-                                                        Module1.x0tesoro = Val(lTokens(i + 4).getTexto);
-                                                        Module1.y0tesoro = Val(lTokens(i + 6).getTexto);
-                                                        Console.WriteLine("LA PUTA MADRE LASKDFJALSKDFJALSDKFJADF " + lTokens(i + 4).getTexto + "Y" + lTokens(i + 6).getTexto);
+                                                        Int32.TryParse(lTokens[i + 4].getTexto(), out Module1.x0personaje);
+                                                        Int32.TryParse(lTokens[i + 6].getTexto(), out Module1.y0personaje);
+                                                        Console.WriteLine("LA PUTA MADRE LASKDFJALSKDFJALSDKFJADF " + lTokens[i + 4].getTexto() + "Y" + lTokens[i + 6].getTexto());
                                                     }
                                                 }
                                             }
@@ -753,26 +774,26 @@ namespace DIGS
                     }
 
                     // Verificar Dimensiones
-                    if ((lTokens(i).getTipo == Tokens.Tipo.DIMENSIONES))
+                    if (lTokens[i].getTipo() == Tokens.Tipo.DIMENSIONES)
                     {
-                        if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
+                        if (lTokens[i + 1].getTipo() == Tokens.Tipo.CORCHETE_CERRADO)
                         {
-                            if ((lTokens(i + 2).getTipo == Tokens.Tipo.DOS_PUNTOS))
+                            if (lTokens[i + 2].getTipo() == Tokens.Tipo.DOS_PUNTOS)
                             {
-                                if ((lTokens(i + 3).getTipo == Tokens.Tipo.PARENTESIS_ABIERTO))
+                                if (lTokens[i + 3].getTipo() == Tokens.Tipo.PARENTESIS_ABIERTO)
                                 {
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((lTokens(i + 5).getTipo == Tokens.Tipo.COMA))
+                                        if (lTokens[i + 5].getTipo() == Tokens.Tipo.COMA)
                                         {
-                                            if ((lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                            if (lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                             {
-                                                if ((lTokens(i + 7).getTipo == Tokens.Tipo.PARENTESIS_CERRADO))
+                                                if (lTokens[i + 7].getTipo() == Tokens.Tipo.PARENTESIS_CERRADO)
                                                 {
-                                                    if ((lTokens(i + 8).getTipo == Tokens.Tipo.PUNTO_Y_COMA))
+                                                    if (lTokens[i + 8].getTipo() == Tokens.Tipo.PUNTO_Y_COMA)
                                                     {
-                                                        Module1.dimensionx = Val(lTokens(i + 4).getTexto);
-                                                        Module1.dimensiony = Val(lTokens(i + 6).getTexto);
+                                                        Int32.TryParse(lTokens[i + 4].getTexto(), out Module1.x0personaje);
+                                                        Int32.TryParse(lTokens[i + 6].getTexto(), out Module1.y0personaje);
                                                     }
                                                 }
                                             }
@@ -784,45 +805,54 @@ namespace DIGS
                     }
 
                     // Verificar Obstaculos CASILLA
-                    if ((lTokens(i).getTipo == Tokens.Tipo.CASILLA))
+                    if (lTokens[i].getTipo() == Tokens.Tipo.CASILLA)
                     {
-                        if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
+                        if (lTokens[i + 1].getTipo() == Tokens.Tipo.CORCHETE_CERRADO)
                         {
-                            if ((lTokens(i + 2).getTipo == Tokens.Tipo.DOS_PUNTOS))
+                            if (lTokens[i + 2].getTipo() == Tokens.Tipo.DOS_PUNTOS)
                             {
-                                if ((lTokens(i + 3).getTipo == Tokens.Tipo.PARENTESIS_ABIERTO))
+                                if (lTokens[i + 3].getTipo() == Tokens.Tipo.PARENTESIS_ABIERTO)
                                 {
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO))
-                                        lObstaculos.Add(new Obstaculos(Val(lTokens(i + 4).getTexto), Val(lTokens(i + 6).getTexto), 1));
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 6).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
-                                        {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 6).getTexto)))
-                                                y = Val(lVariable(v).getValor);
-                                        }
-                                        lObstaculos.Add(new Obstaculos(Val(lTokens(i + 4).getTexto), y, 1));
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 6].getTexto(), out b);
+
+                                        lObstaculos.Add(new Obstaculos(a, b, 1));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 6].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 4).getTexto)))
-                                                x = Val(lVariable(v).getValor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 6].getTexto()))
+                                            {
+                                                Int32.TryParse(lVariable[v].getValor(), out y);
+                                            }
                                         }
-                                        lObstaculos.Add(new Obstaculos(x, Val(lTokens(i + 6).getTexto), 1));
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        lObstaculos.Add(new Obstaculos(a, y, 1));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 6).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 4).getTexto)))
-                                                x = Val(lVariable(v).getValor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 4].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out x);
+                                        }
+                                        Int32.TryParse(lTokens[i + 6].getTexto(), out d);
+                                        lObstaculos.Add(new Obstaculos(x, d, 1));
+                                    }
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 6].getTipo() == Tokens.Tipo.IDENTIFICADOR)
+                                    {
+                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
+                                        {
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 4].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out x);
                                         }
                                         for (int w = 0; w <= lVariable.Count - 1; w += 1)
                                         {
-                                            if ((lVariable(w).getNombre.Equals(lTokens(i + 6).getTexto)))
-                                                y = Val(lVariable(w).getValor);
+                                            if (lVariable[w].getNombre().Equals(lTokens[i + 6].getTexto()))
+                                                Int32.TryParse(lVariable[w].getValor(), out x);
                                         }
                                         lObstaculos.Add(new Obstaculos(x, y, 1));
                                     }
@@ -830,108 +860,123 @@ namespace DIGS
                             }
                         }
                     }
-                int vv = 0 ;
-                // Verificar Rango_Casillas
-                if ((lTokens(i).getTipo == Tokens.Tipo.RANGO_CASILLA))
+                    int vv = 0;
+                    // Verificar Rango_Casillas
+                    if (lTokens[i].getTipo() == Tokens.Tipo.RANGO_CASILLA)
                     {
-                        if ((lTokens(i + 1).getTipo == Tokens.Tipo.CORCHETE_CERRADO))
+                        if (lTokens[i + 1].getTipo() == Tokens.Tipo.CORCHETE_CERRADO)
                         {
-                            if ((lTokens(i + 2).getTipo == Tokens.Tipo.DOS_PUNTOS))
+                            if (lTokens[i + 2].getTipo() == Tokens.Tipo.DOS_PUNTOS)
                             {
-                                if ((lTokens(i + 3).getTipo == Tokens.Tipo.PARENTESIS_ABIERTO))
+                                if (lTokens[i + 3].getTipo() == Tokens.Tipo.PARENTESIS_ABIERTO)
                                 {
                                     // numero, numero..numero
-                                    if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 9].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((Val(lTokens(i + 6).getTexto) < Val(lTokens(i + 9).getTexto)))
+                                        Int32.TryParse(lTokens[i + 6].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 9].getTexto(), out b);
+                                        if (a < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
-                                        for (int c = Val(lTokens(i + 6).getTexto); c <= lTokens(i + 9).getTexto(); c += pasito)
-                                            lObstaculos.Add(new Obstaculos(Val(lTokens(i + 4).getTexto), c, 1));
-                                    }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
-                                    {
-                                        if ((Val(lTokens(i + 6).getTexto) < Val(lTokens(i + 9).getTexto)))
-                                            pasito = 1;
-                                        else
-                                            pasito = -1;
-                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
+                                        for (int cm = a; cm <= b; cm += pasito)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 4).getTexto)))
-                                                x = Val(lVariable(v).getValor);
+                                            Int32.TryParse(lTokens[i + 4].getTexto(), out d);
+                                            lObstaculos.Add(new Obstaculos(d, cm, 1));
                                         }
-                                        for (int c = Val(lTokens(i + 6).getTexto); c <= Val(lTokens(i + 9).getTexto); c += pasito)
-                                            lObstaculos.Add(new Obstaculos(x, c, 1));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 7).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 9].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((Val(lTokens(i + 4).getTexto) < Val(lTokens(i + 7).getTexto)))
+                                        Int32.TryParse(lTokens[i + 6].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 9].getTexto(), out b);
+                                        if (a < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 9).getTexto)))
-                                                y = Val(lVariable(v).getValor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 4].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out x);
                                         }
-                                        for (int c = Val(lTokens(i + 4).getTexto); c <= Val(lTokens(i + 7).getTexto); c += pasito)
-                                            lObstaculos.Add(new Obstaculos(c, y, 1));
+                                        for (int cm = a; cm <= b; cm += pasito)
+                                            lObstaculos.Add(new Obstaculos(x, cm, 1));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 7).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 7].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 4))) < Val(lTokens(i + 7).getTexto)))
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 7].getTexto(), out b);
+                                        if (a < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 4).getTexto)))
-                                                a = Val(lVariable(v).getValor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 9].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out y);
+                                        }
+                                        for (int cx = a; cx <= b; cx += pasito)
+                                            lObstaculos.Add(new Obstaculos(cx, y, 1));
+                                    }
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 7].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
+                                    {
+                                        Int32.TryParse(lTokens[i + 4].getTexto(), out a);
+                                        Int32.TryParse(lTokens[i + 7].getTexto(), out b);
+                                        if (a < b)
+                                            pasito = 1;
+                                        else
+                                            pasito = -1;
+                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
+                                        {
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 4].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out d);
                                         }
                                         for (int w = 0; w <= lVariable.Count - 1; w += 1)
                                         {
-                                            if ((lVariable(w).getNombre.Equals(lTokens(i + 9).getTexto)))
-                                                y = Val(lVariable(w).getValor);
+                                            if (lVariable[w].getNombre().Equals(lTokens[i + 9].getTexto()))
+                                                Int32.TryParse(lVariable[w].getValor(), out y);
                                         }
-                                        for (int c = a; c <= Val(lTokens(i + 7).getTexto); c += pasito)
-                                            lObstaculos.Add(new Obstaculos(c, y, 1));
+                                        for (int cx = d; cx <= b; cx += pasito)
+                                            lObstaculos.Add(new Obstaculos(cx, y, 1));
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.IDENTIFICADOR & lTokens(i + 7).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 8).getTipo == Tokens.Tipo.COMA & lTokens(i + 9).getTipo == Tokens.Tipo.NUMERO_ENTERO))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.IDENTIFICADOR & lTokens[i + 7].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 8].getTipo() == Tokens.Tipo.COMA & lTokens[i + 9].getTipo() == Tokens.Tipo.NUMERO_ENTERO)
                                     {
-                                        if ((Val(buscarvariable(lTokens(i + 4))) < Val(lTokens(i + 7).getTexto)))
+                                        Int32.TryParse(lTokens[i + 7].getTexto(), out b);
+                                        if (buscarvariable(lTokens[i + 4]) < b)
                                             pasito = 1;
                                         else
                                             pasito = -1;
                                         for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            if ((lVariable(v).getNombre.Equals(lTokens(i + 4).getTexto)))
-                                                a = Val(lVariable(v).getValor);
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 4].getTexto()))
+                                                Int32.TryParse(lVariable[v].getValor(), out d);
                                         }
-                                        for (int c = a; c <= Val(lTokens(i + 7).getTexto); c += pasito)
-                                            lObstaculos.Add(new Obstaculos(c, Val(lTokens(i + 9).getTexto), 1));
+                                        for (int cx = d; cx <= b; cx += pasito)
+                                        {
+                                            Int32.TryParse(lTokens[i + 9].getTexto(), out y);
+                                            lObstaculos.Add(new Obstaculos(cx, y, 1));
+                                        }
                                     }
-                                    else if ((lTokens(i + 4).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 5).getTipo == Tokens.Tipo.COMA & lTokens(i + 6).getTipo == Tokens.Tipo.NUMERO_ENTERO & lTokens(i + 9).getTipo == Tokens.Tipo.IDENTIFICADOR))
+                                    else if (lTokens[i + 4].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 5].getTipo() == Tokens.Tipo.COMA & lTokens[i + 6].getTipo() == Tokens.Tipo.NUMERO_ENTERO & lTokens[i + 9].getTipo() == Tokens.Tipo.IDENTIFICADOR)
                                     {
                                         if (Int32.Parse(lTokens[i + 6].getTexto()) < buscarvariable(lTokens[i + 9]))
                                             pasito = 1;
                                         else
                                             pasito = -1;
 
-                                    for (int v = 0; v <= lVariable.Count - 1; v += 1)
-                                    {
-
-                                        if (lVariable[v].getNombre().Equals(lTokens[i + 9].getTexto()))
+                                        for (int v = 0; v <= lVariable.Count - 1; v += 1)
                                         {
-                                            Int32.TryParse(lVariable[v].getValor(), out vv);
-                                        }
-                                    }
 
-                                    for (Int32.TryParse(lTokens[i + 6].getTexto(), out c); c <= vv; c += pasito)
-                                    {
-                                        lObstaculos.Add(new Obstaculos(Int32.Parse(lTokens[i + 4].getTexto()), c, 1));
-                                    }
-                                    
+                                            if (lVariable[v].getNombre().Equals(lTokens[i + 9].getTexto()))
+                                            {
+                                                Int32.TryParse(lVariable[v].getValor(), out vv);
+                                            }
+                                        }
+
+                                        for (Int32.TryParse(lTokens[i + 6].getTexto(), out c); c <= vv; c += pasito)
+                                        {
+                                            lObstaculos.Add(new Obstaculos(Int32.Parse(lTokens[i + 4].getTexto()), c, 1));
+                                        }
+
                                     }
                                 }
                             }
@@ -942,14 +987,19 @@ namespace DIGS
                 Module1.lObstaculos = this.lObstaculos;
                 Module1.lCoordenadas = this.lCoordenadas;
                 Form2.Show();
+            }
         }
 
         void imprimirvariables(List<Variables> l)
         {
             foreach (Variables t in l)
-                Console.WriteLine(t.getNombre().ToString() + "->" + t.getValor().ToString());
+            Console.WriteLine(t.getNombre().ToString() + "->" + t.getValor().ToString());
         }
 
+        List<Coordenada> ObtenerLista()
+        {
+            return lCoordenadas;
+        }
 
         Style BlueStyle = new TextStyle(Brushes.Blue, null, System.Drawing.FontStyle.Italic);
         Style RedStyle = new TextStyle(System.Drawing.Brushes.Red, null, System.Drawing.FontStyle.Regular);
@@ -961,54 +1011,47 @@ namespace DIGS
         Style VioletStyle = new TextStyle(System.Drawing.Brushes.Violet, null, System.Drawing.FontStyle.Bold);
         Style OrangeStyle = new TextStyle(System.Drawing.Brushes.Orange, null, System.Drawing.FontStyle.Bold);
 
-        private void rtbT_TextChanged(object sender, TextChangedEventArgs e)
+        private void rtbT_TextChanged(object sender, EventArgs e)
         {
-            Regex reservadas = new Regex(@"\b((P|p)rincipal|(I|i)ntevalo|(N|n)ivel|(D|d)imensiones|(I|i)nicio_(P|p)ersonaje|(U|u)bicacion_(S|s)alida|(P|p)ared|(E|e)nemigo|(C|c)aminata|(C|c)asilla|(V|v)arias_(C|c)asillas|(P|p)ersonaje|(P|p)aso|(V|v)ariable|(R|r)ango_(C|c)asillas)\b");
-            Regex numeros = new Regex(@"\b\d+\b");
-            Regex Dospuntos = new Regex(@":");
-            Regex Llaves = new Regex(@"(\{|\})");
-            Regex Corchetes = new Regex(@"(\[|\])");
-            Regex Identificadores = new Regex(@"([a-z]|[A-Z])(\d+)");
-            Regex Parentesis = new Regex(@"(\(|\))");
-            Regex Varios = new Regex(@"(\.|\,|\;)");
-            Regex Aritmetica = new Regex(@"(\+|\-|\*|\/|\=)");
+                Regex reservadas = new Regex(@"\b((P|p)rincipal|(I|i)ntevalo|(N|n)ivel|(D|d)imensiones|(I|i)nicio_(P|p)ersonaje|(U|u)bicacion_(S|s)alida|(P|p)ared|(E|e)nemigo|(C|c)aminata|(C|c)asilla|(V|v)arias_(C|c)asillas|(P|p)ersonaje|(P|p)aso|(V|v)ariable|(R|r)ango_(C|c)asillas)\b");
+                Regex numeros = new Regex(@"\b\d+\b");
+                Regex Dospuntos = new Regex(@":");
+                Regex Llaves = new Regex(@"(\{|\})");
+                Regex Corchetes = new Regex(@"(\[|\])");
+                Regex Identificadores = new Regex(@"([a-z]|[A-Z])(\d+)");
+                Regex Parentesis = new Regex(@"(\(|\))");
+                Regex Varios = new Regex(@"(\.|\,|\;)");
+                Regex Aritmetica = new Regex(@"(\+|\-|\*|\/|\=)");
 
-            Range range = (sender as FastColoredTextBox).Range;
+                Range range = (sender as FastColoredTextBox).Range;
 
-            range.ClearStyle(BlueStyle);
-            range.SetStyle(BlueStyle, reservadas.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(BlueStyle);
+                range.SetStyle(BlueStyle, reservadas.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(RedStyle);
-            range.SetStyle(RedStyle, numeros.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(RedStyle);
+                range.SetStyle(RedStyle, numeros.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(YellowStyle);
-            range.SetStyle(YellowStyle, Dospuntos.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(YellowStyle);
+                range.SetStyle(YellowStyle, Dospuntos.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(PinkStyle);
-            range.SetStyle(PinkStyle, Llaves.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(PinkStyle);
+                range.SetStyle(PinkStyle, Llaves.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(SkyBlueStyle);
-            range.SetStyle(SkyBlueStyle, Corchetes.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(SkyBlueStyle);
+                range.SetStyle(SkyBlueStyle, Corchetes.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(GreenStyle);
-            range.SetStyle(GreenStyle, Identificadores.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(GreenStyle);
+                range.SetStyle(GreenStyle, Identificadores.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(BrownStyle);
-            range.SetStyle(BrownStyle, Parentesis.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(BrownStyle);
+                range.SetStyle(BrownStyle, Parentesis.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(VioletStyle);
-            range.SetStyle(VioletStyle, Varios.ToString(), RegexOptions.IgnoreCase);
+                range.ClearStyle(VioletStyle);
+                range.SetStyle(VioletStyle, Varios.ToString(), RegexOptions.IgnoreCase);
 
-            range.ClearStyle(OrangeStyle);
-            range.SetStyle(OrangeStyle, Aritmetica.ToString(), RegexOptions.IgnoreCase);
-
+                range.ClearStyle(OrangeStyle);
+                range.SetStyle(OrangeStyle, Aritmetica.ToString(), RegexOptions.IgnoreCase);
+        
         }
-
-        List<Coordenada> ObtenerLista()
-        {
-            return lCoordenadas;
-        }
-
-
     }
 }

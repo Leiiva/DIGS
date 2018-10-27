@@ -118,7 +118,7 @@
             // 
             this.analizarToolStripMenuItem.Image = global::DIGS.Properties.Resources.find;
             this.analizarToolStripMenuItem.Name = "analizarToolStripMenuItem";
-            this.analizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.analizarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.analizarToolStripMenuItem.Text = "Analizar";
             this.analizarToolStripMenuItem.Click += new System.EventHandler(this.analizarToolStripMenuItem_Click);
             // 
@@ -126,7 +126,7 @@
             // 
             this.crearJuegoToolStripMenuItem.Image = global::DIGS.Properties.Resources._goto;
             this.crearJuegoToolStripMenuItem.Name = "crearJuegoToolStripMenuItem";
-            this.crearJuegoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearJuegoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.crearJuegoToolStripMenuItem.Text = "Crear Juego";
             this.crearJuegoToolStripMenuItem.Click += new System.EventHandler(this.crearJuegoToolStripMenuItem_Click);
             // 
@@ -172,6 +172,7 @@
             this.rtbT.Size = new System.Drawing.Size(607, 413);
             this.rtbT.TabIndex = 3;
             this.rtbT.Text = "";
+            this.rtbT.TextChanged += new System.EventHandler(this.rtbT_TextChanged);
             // 
             // Form1
             // 
