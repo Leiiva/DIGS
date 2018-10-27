@@ -72,13 +72,13 @@ namespace DIGS
             Graphics g = pe.Graphics;
 
             // Dibujamos el fondo
-            Bitmap imagen = new Bitmap("obstaculos.jpg");
+            Bitmap imagen = new Bitmap("fondo.png");
             imagen.SetResolution(51 * dimensionx, 55 * dimensiony);
             g.DrawImage(imagen, 0, 0);
 
 
             // Dibujamos los obstaculos
-            imagen = new Bitmap("obstaculos.jpg");
+            imagen = new Bitmap("obstaculos.png");
             for (var i = 0; i <= obstaculos.GetUpperBound(0); i++)
             {
                 for (var j = 0; j <= obstaculos.GetUpperBound(1); j++)
@@ -88,10 +88,10 @@ namespace DIGS
                 }
             }
             // Dibujamos el tesoro
-            imagen = new Bitmap("tesoro.jpg");
+            imagen = new Bitmap("tesoro.png");
             g.DrawImage(imagen, tesorox * 50, tesoroy * 50);
             // Dibujamos la casilla según el lugar en el que esté
-            imagen = new Bitmap("personaje.jpg");
+            imagen = new Bitmap("personaje.gif");
             g.DrawImage(imagen, 50 * personajex, 50 * personajey); // Lo multiplico por 50 porque la imagen casilla es de 50*50
         }
 
