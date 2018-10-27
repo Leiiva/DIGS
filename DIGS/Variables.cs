@@ -27,9 +27,9 @@ namespace DIGS
             return Valor;
         }
 
-        public void setValor(string val)
+        public void setValor(int val)
         {
-            this.Valor = val;
+            this.Valor = val.ToString();
         }
         public void setNombre(string nom)
         {
