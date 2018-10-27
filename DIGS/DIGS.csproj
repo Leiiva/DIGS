@@ -58,6 +58,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module1.cs" />
     <Compile Include="Obstaculos.cs" />
     <Compile Include="Program.cs" />
@@ -67,6 +73,9 @@
     <Compile Include="Variables.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,27 +102,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\browse.png" />
+    <Content Include="Resources\casilla.png" />
     <Content Include="Resources\ccppicon.ico" />
     <Content Include="Resources\copy.png" />
     <Content Include="Resources\csharpicon.ico" />
     <Content Include="Resources\cut.png" />
+    <Content Include="Resources\enemigo.gif" />
     <Content Include="Resources\exit.png" />
     <Content Include="Resources\FastColoredTextBox.dll" />
     <Content Include="Resources\FastColoredTextBox.pdb" />
     <Content Include="Resources\find.png" />
+    <Content Include="Resources\fondo.jpg" />
+    <Content Include="Resources\fondo.png" />
     <Content Include="Resources\font.png" />
+    <Content Include="Resources\game.ico" />
     <Content Include="Resources\goto.png" />
     <Content Include="Resources\help.png" />
     <Content Include="Resources\htmlicon.ico" />
     <Content Include="Resources\new.png" />
+    <Content Include="Resources\obstaculo.png" />
+    <Content Include="Resources\obstaculos.png" />
     <Content Include="Resources\open.png" />
     <Content Include="Resources\paste.png" />
+    <Content Include="Resources\personaje.gif" />
     <Content Include="Resources\prev.png" />
     <Content Include="Resources\print.png" />
     <Content Include="Resources\redo.png" />
     <Content Include="Resources\save.png" />
     <Content Include="Resources\saveas.png" />
     <Content Include="Resources\Sbstnblnd-Plateau-Apps-text-editor.ico" />
+    <Content Include="Resources\tesoro.png" />
     <Content Include="Resources\undo.png" />
     <Content Include="Resources\vbicon.ico" />
   </ItemGroup>

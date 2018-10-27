@@ -986,7 +986,8 @@ namespace DIGS
                 imprimirvariables(lVariable);
                 Module1.lObstaculos = this.lObstaculos;
                 Module1.lCoordenadas = this.lCoordenadas;
-                Form2.Show();
+                Form2 F = new Form2();
+                F.Show();
             }
         }
 

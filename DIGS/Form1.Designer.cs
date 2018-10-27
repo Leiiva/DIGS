@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.tsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,6 +182,7 @@
             this.ClientSize = new System.Drawing.Size(607, 437);
             this.Controls.Add(this.rtbT);
             this.Controls.Add(this.msMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "DIGS - Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
